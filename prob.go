@@ -62,6 +62,43 @@ func MaxSubArray(nums []int) int {
 	return FinalSum
 }
 
+// can also find the maximal sum-recursively, by splitting array into two 
+// ^^ this is in-correct as it ignores the cases where the left max-sum is dimimished by larger negative in-between
+func MaxSubArray2(nums []int) int {
+	low , high, sum := maxSubArray(nums, 0, len(nums) - 1)
+	fmt.Println(low, high)
+	return sum
+}
+
+func maxSubArray(nums []int, low, high int) (int, int, int) {
+	// base-case, if they are equal return 
+	if low == high {
+		return low, high, nums[low]
+	}
+	mid := (low + high) / 2
+	leftLowBound, leftUpBound, sumLeft := maxSubArray(nums, low, mid)
+	rightLowBound, rightUpBound, sumRight := maxSubArray(nums, mid + 1, high)
+	// determine if there is a link between the two arrays, i.e the sum of
+	link := findLink(nums,leftUpBound, rightLowBound)
+	total := link + sumLeft + sumRight
+	if total >= sumLeft && total >= sumRight {
+		return leftLowBound, rightUpBound, total
+	}
+
+	if sumLeft > sumRight {
+		return leftLowBound, leftUpBound, sumLeft
+	}
+	return rightLowBound, rightUpBound, sumRight
+}
+
+func findLink(nums []int, leftBound, rightBound int) int {
+	sum := 0
+	for i := leftBound + 1; i < rightBound; i++ {
+		sum += nums[i]
+	}
+	return sum
+}
+
 // find the minimum of a sorted array that is rotated
 // use binary search to
 func FindMin(nums []int) int {

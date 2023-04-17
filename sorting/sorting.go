@@ -41,7 +41,7 @@ func mergeSort[C comparable, O utils.Ord[C]](arr []O, start, finish int) {
 		// recursively sort first half
 		mergeSort[C](arr, start, mid)
 		// sort second half
-		mergeSort[C](arr, start+1, finish)
+		mergeSort[C](arr, mid+1, finish)
 		// join both halves
 		merge[C](arr, start, mid, finish)
 	}

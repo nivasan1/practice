@@ -1,9 +1,10 @@
 package prob_test
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	solution "leetcode.com/leetcode"
-	"testing"
 )
 
 func Test1(t *testing.T) {
@@ -13,6 +14,13 @@ func Test1(t *testing.T) {
 	assert.Equal(t, ans, []int{24, 12, 8, 6})
 	ans = solution.ProductExceptSelf([]int{-1, 1, 0, -3, 3})
 	assert.Equal(t, ans, []int{0, 0, 9, 0, 0})
+}
+
+func Test2(t *testing.T) {
+	ans := solution.MaxSubArray2([]int{4, -1, 2, 1, -5, 4})
+	assert.Equal(t, ans, 10)
+	ans = solution.MaxSubArray2([]int{-2, 1, -3, 4, -1, 2, 1, -5, 4})
+	assert.Equal(t, ans, 6)
 }
 
 func Test3(t *testing.T) {
