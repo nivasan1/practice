@@ -19,28 +19,12 @@ func Minimax(scores []int, maximizer bool) int {
 	var fn func(int, int) int
 	for i := 0; i < len(scores); i += 2 {
 		if maximizer {
-			fn = max
+			fn = utils.Max
 		} else {
-			fn = min
+			fn = utils.Min
 		}
 		minimaxedScores[j] = fn(scores[i], scores[i+1])
 		j++
 	}
 	return Minimax(minimaxedScores, !maximizer)
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	} else {
-		return b
-	}
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	} else {
-		return b
-	}
 }

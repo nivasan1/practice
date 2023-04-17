@@ -36,7 +36,11 @@ func (a adjacencyList) OutDegree(vertex int) int {
 	if vertex > len(a.edges)-1 {
 		return 0
 	}
-	return len(a.edges[vertex])
+	out := 0
+	for _, edge := range a.edges[vertex] {
+		out += edge
+	}
+	return out
 }
 
 func (a adjacencyList) InDegree(vertex int) int {
@@ -53,11 +57,21 @@ func (a adjacencyList) InDegree(vertex int) int {
 }
 
 func (a adjacencyList) Transpose() Graph {
-	return nil
+	newAdjList := newAdjacencyList(len(a.edges))
+
+	for i, edges := range a.edges {
+		for j, edge := range edges {
+			if edge == 1 {
+				newAdjList.AddEdge(j, i)
+			}
+		}
+	}
+	return newAdjList
 }
 
 func (a *adjacencyList) AddEdge(fromVertex, toVertex int) {
 	if fromVertex > len(a.edges)-1 || toVertex > len(a.edges)-1 {
 		return
 	}
+	a.edges[fromVertex][toVertex] = 1
 }

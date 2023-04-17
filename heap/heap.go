@@ -18,19 +18,19 @@ type heapNodeImpl struct {
 
 func (h heapNodeImpl) Parent() HeapNode {
 	return heapNodeImpl{
-		i: h.i << 1,
+		i: h.i >> 1,
 	}
 }
 
 func (h heapNodeImpl) RightChild() HeapNode {
 	return heapNodeImpl{
-		i: h.i>>1 + 1,
+		i: h.i<<1 + 1,
 	}
 }
 
 func (h heapNodeImpl) LeftChild() HeapNode {
 	return heapNodeImpl{
-		i: h.i >> 1,
+		i: h.i << 1,
 	}
 }
 

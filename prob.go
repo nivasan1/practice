@@ -326,7 +326,7 @@ func minPathSum(grid [][]int) int {
 	return 0
 }
 
-//  Definition for a binary tree node.
+// Definition for a binary tree node.
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
