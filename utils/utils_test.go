@@ -11,6 +11,7 @@ func TestLog2(t *testing.T) {
 	assert.Equal(t, utils.Log2(4), 2)
 	assert.Equal(t, utils.Log2(3), 1)
 	assert.Equal(t, utils.Log2(8), 3)
+	assert.Equal(t, utils.Log2(11), 2)
 }
 
 func TestIsPow2(t *testing.T) {
