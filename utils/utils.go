@@ -1,7 +1,9 @@
 package utils
 
-const MAX_INT = 1<<63 - 1
-const MIN_INT = -(1 << 63)
+const (
+	MAX_INT = 1<<63 - 1
+	MIN_INT = -(1 << 63)
+)
 
 type Ord[C comparable] interface {
 	Less(j C) bool
@@ -73,4 +75,17 @@ func Max(a, b int) int {
 	} else {
 		return b
 	}
+}
+
+func Factorial(n int) int {
+	if n == 1 {
+		return n
+	}
+	return n * Factorial(n-1)
+}
+
+func Choose(total, choices int) int {
+	num := Factorial(total)
+	dem := Factorial(total-choices) * Factorial(choices)
+	return num / dem
 }

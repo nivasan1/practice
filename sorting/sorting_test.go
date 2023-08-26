@@ -2,10 +2,11 @@ package sorting_test
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"leetcode.com/leetcode/sorting"
 	"leetcode.com/leetcode/utils"
-	"testing"
 )
 
 func TestInsertionSort(t *testing.T) {

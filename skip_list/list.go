@@ -84,9 +84,7 @@ func (l *list[C]) Get(find C) (C, bool) {
 }
 
 func (l *list[C]) Remove(remove C) (C, bool) {
-	var (
-		val C
-	)
+	var val C
 	// find the element, and its predecessor
 	nodes := l.get(func(n *listNode[C]) bool {
 		if n != nil {

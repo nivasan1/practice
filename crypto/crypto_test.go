@@ -2,10 +2,11 @@ package crypto_test
 
 import (
 	"fmt"
-	"testing"
-	"leetcode.com/leetcode/crypto"
-	"github.com/stretchr/testify/assert"
 	"math/big"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"leetcode.com/leetcode/crypto"
 )
 
 var (
@@ -19,21 +20,21 @@ func TestRoman(t *testing.T) {
 	crypto.SolveCaesar()
 }
 
-func TestModExp(t *testing.T ) {
+func TestModExp(t *testing.T) {
 	// test naive against 2^4(2) = 0
 	assert.Equal(t, crypto.NaiveModExp(2, 4, 2), 0)
 	assert.Equal(t, crypto.NaiveModExp(3, 5, 2), 1)
 	// assert.Equal(t, crypto.FasterModExp(3, 5, 2), 1)
-	assert.Equal(t, crypto.FasterModExp(2,10, 17), 4)
+	assert.Equal(t, crypto.FasterModExp(2, 10, 17), 4)
 	fmt.Println(crypto.FasterModExp(101, 17, 22663))
 	fmt.Println(crypto.FasterModExpBig(big.NewInt(101), big.NewInt(17), big.NewInt(22663)))
-	fmt.Println(crypto.FasterModExp(12, 65537, 17 * 23))
-	fmt.Println(crypto.FasterModExpBig(big.NewInt(12), big.NewInt(65537), big.NewInt(17 * 23)))
-	assert.Equal(t, crypto.Exp(3,3), 27)
+	fmt.Println(crypto.FasterModExp(12, 65537, 17*23))
+	fmt.Println(crypto.FasterModExpBig(big.NewInt(12), big.NewInt(65537), big.NewInt(17*23)))
+	assert.Equal(t, crypto.Exp(3, 3), 27)
 }
 
 func TestGCD(t *testing.T) {
-	assert.Equal(t, crypto.GCD(81, 57),3)
+	assert.Equal(t, crypto.GCD(81, 57), 3)
 	u, v, d := crypto.ExtendedEuclidean(big.NewInt(5), big.NewInt(3))
 	assert.Equal(t, d.Int64(), int64(1))
 	assert.Equal(t, u.Int64(), int64(-1))
@@ -49,4 +50,10 @@ func TestGCD(t *testing.T) {
 	fmt.Println("message-expect", big.NewInt(0).Exp(c, v, N))
 	m, _ := big.NewInt(0).SetString("90069129621022947985964673588167290009238865977637281349495", 10)
 	fmt.Println(crypto.FasterModExpBig(m, big.NewInt(65537), N))
+}
+
+func TestEuclid(t *testing.T) {
+	_, _, gcd := crypto.Euclid(81, 57)
+	assert.Equal(t, gcd, 3)
+	fmt.Println(crypto.Euclid(123, 54))
 }

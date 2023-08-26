@@ -62,24 +62,24 @@ func MaxSubArray(nums []int) int {
 	return FinalSum
 }
 
-// can also find the maximal sum-recursively, by splitting array into two 
+// can also find the maximal sum-recursively, by splitting array into two
 // ^^ this is in-correct as it ignores the cases where the left max-sum is dimimished by larger negative in-between
 func MaxSubArray2(nums []int) int {
-	low , high, sum := maxSubArray(nums, 0, len(nums) - 1)
+	low, high, sum := maxSubArray(nums, 0, len(nums)-1)
 	fmt.Println(low, high)
 	return sum
 }
 
 func maxSubArray(nums []int, low, high int) (int, int, int) {
-	// base-case, if they are equal return 
+	// base-case, if they are equal return
 	if low == high {
 		return low, high, nums[low]
 	}
 	mid := (low + high) / 2
 	leftLowBound, leftUpBound, sumLeft := maxSubArray(nums, low, mid)
-	rightLowBound, rightUpBound, sumRight := maxSubArray(nums, mid + 1, high)
+	rightLowBound, rightUpBound, sumRight := maxSubArray(nums, mid+1, high)
 	// determine if there is a link between the two arrays, i.e the sum of
-	link := findLink(nums,leftUpBound, rightLowBound)
+	link := findLink(nums, leftUpBound, rightLowBound)
 	total := link + sumLeft + sumRight
 	if total >= sumLeft && total >= sumRight {
 		return leftLowBound, rightUpBound, total
@@ -297,7 +297,7 @@ func LongestCommonSubsequence(text1 string, text2 string) int {
 	wordIdx := make(map[byte]int)
 	for i := 0; i < len(small); i++ {
 		for j := 0; j < len(large); j++ {
-			// only record index of earliest occurance
+			// only record index of earliest occurrence
 			if _, ok := wordIdx[small[i]]; ok {
 				continue
 			}

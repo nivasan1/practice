@@ -19,10 +19,10 @@ const (
 )
 
 type node struct {
-	edges []int
-	color color
+	edges    []int
+	color    color
 	distance int
-	pred *node
+	pred     *node
 }
 
 type adjacencyList struct {
@@ -110,13 +110,13 @@ func (a *adjacencyList) reset() {
 }
 
 type BfsNode struct {
-	Vertex int
+	Vertex   int
 	Children []*BfsNode
 }
 
 func newBFSNode(vertex int) *BfsNode {
 	return &BfsNode{
-		Vertex: vertex,
+		Vertex:   vertex,
 		Children: make([]*BfsNode, 0),
 	}
 }
@@ -144,7 +144,7 @@ func (g *adjacencyList) BFSTree(s int) *BfsTree {
 
 func (g *adjacencyList) bfsWithNode(n *node, root *BfsNode) {
 	type data struct {
-		n *node
+		n   *node
 		bfs *BfsNode
 	}
 	// set distance on n
@@ -165,12 +165,12 @@ func (g *adjacencyList) bfsWithNode(n *node, root *BfsNode) {
 			bfsNode := newBFSNode(vertexIdx)
 			root.Children = append(root.Children, bfsNode)
 			datas = append(datas, data{
-				n: vertex,
+				n:   vertex,
 				bfs: bfsNode,
 			})
 		}
 	}
-	// set n black 
+	// set n black
 	n.color = black
 	// call bfsWithNode for all children
 	for _, data := range datas {
@@ -180,6 +180,7 @@ func (g *adjacencyList) bfsWithNode(n *node, root *BfsNode) {
 		}
 	}
 }
+
 // fifo queue implementation
 type Queue[C any] interface {
 	Push(C)
@@ -191,7 +192,7 @@ func NewQueue[C any]() Queue[C] {
 }
 
 type queueNode[C any] struct {
-	val C
+	val  C
 	next *queueNode[C]
 }
 
@@ -205,14 +206,15 @@ func newQueueNode[C any](val C) *queueNode[C] {
 	}
 }
 
-func (q *queueImpl[C]) Push(val C)  {
+func (q *queueImpl[C]) Push(val C) {
 	if q.head == nil {
 		q.head = newQueueNode(val)
 		return
 	}
 	// go to end of queue
 	var node *queueNode[C]
-	for node = q.head; node.next != nil; node = node.next {}
+	for node = q.head; node.next != nil; node = node.next {
+	}
 	node.next = newQueueNode(val)
 }
 

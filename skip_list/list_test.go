@@ -1,10 +1,11 @@
 package skip_list_test
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	sk "leetcode.com/leetcode/skip_list"
 	"leetcode.com/leetcode/utils"
-	"testing"
 )
 
 func TestListInsertion(t *testing.T) {
