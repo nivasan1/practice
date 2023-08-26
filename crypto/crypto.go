@@ -154,4 +154,3 @@ func FizzBuzz(n int32) {
 		fmt.Print("\n")
 	}
 }
-
